@@ -1,10 +1,6 @@
 package Tasks;
 
 public class Task1 {
-    public static void main(String[] args){
-
-    }
-
     /** Task 1 **/
     public static int convert(int digit) {
         return digit * 60;
