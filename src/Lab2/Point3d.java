@@ -1,13 +1,10 @@
 package Lab2;
 
-public class Point3d {
-    private double x;
-    private double y;
-    private double z;
+public class Point3d extends Point2d {
+    protected double z;
 
-    public Point3d(double x,double y, double z){
-        this.x = x;
-        this.y = y;
+    public Point3d(double x,double y, double z) {
+        super(x,y);
         this.z = z;
     }
 
@@ -15,17 +12,11 @@ public class Point3d {
         this(0,0,0);
     }
 
-    public double getX() { return x; }
-    public void setX(double x) { this.x = x; }
-
-    public double getY() { return y; }
-    public void setY(double y) { this.y = y; }
-
     public double getZ() { return z; }
     public void setZ(double z) { this.z = z; }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o){
         if(!(o instanceof Point3d)) return false;
 
         Point3d otherPoint  = (Point3d) o;

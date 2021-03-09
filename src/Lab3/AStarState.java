@@ -1,6 +1,5 @@
 package Lab3;
 
-
 import java.util.*;
 /**
  * This class stores the basic state necessary for the A* algorithm to compute a

@@ -1,8 +1,8 @@
 package Lab2;
 
 public class Point2d {
-    private double x;
-    private double y;
+    protected double x;
+    protected double y;
 
     public Point2d(double x, double y){
         this.x = x;
