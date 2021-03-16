@@ -4,7 +4,7 @@ import Lab4.FractalGenerator;
 
 import java.awt.geom.Rectangle2D;
 
-public class Tricorn extends FractalGenerator {
+public class Tricorn extends FractalGenerator{
     public static final int MAX_ITERATIONS = 200;
 
     @Override
