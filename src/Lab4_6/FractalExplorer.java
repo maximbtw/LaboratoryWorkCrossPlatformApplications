@@ -1,7 +1,5 @@
-package Lab4;
+package Lab4_6;
 
-import Lab5.BurningShip;
-import Lab5.Tricorn;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -144,7 +142,7 @@ public class FractalExplorer {
         }
     }
 
-    /** Отвечает за пиблежение картинки фрактала */
+    /** Отвечает за приближение картинки фрактала */
     private class MouseHandler extends MouseAdapter{
         @Override
         public void mouseClicked(MouseEvent e)
