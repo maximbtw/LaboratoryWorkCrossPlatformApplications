@@ -1,22 +1,20 @@
 package Lab8;
 
 import Lab7.URLDepthPair;
-
 import java.net.*;
 import java.util.Scanner;
-/*
-public class CrawlerTask implements Runnable {
+
+public class CrawlerTask extends Thread {
     private URLPool pool;
 
     public CrawlerTask(URLDepthPair link) {
         pool = new URLPool();
-        pool.AddLink(link);
+        pool.addLink(link);
     }
 
     @Override
     public void run() {
-        URLDepthPair link = pool.GetLink();
-        if (link == null) return;
+        URLDepthPair link = pool.getLink();
         System.out.println(link.toString());
         System.out.println(Thread.activeCount());
         Crawler.CountURLs++;
@@ -34,7 +32,6 @@ public class CrawlerTask implements Runnable {
             connection.setRequestMethod("GET");
 
             Scanner scanner = new Scanner(connection.getInputStream());
-
 
             while (scanner.findWithinHorizon("<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1", 0) != null) {
                 String newURL = scanner.match().group(2);
@@ -57,9 +54,23 @@ public class CrawlerTask implements Runnable {
         return new URLDepthPair(newURL, link.getDepth() + 1);
     }
 
-    private void CreateNewThread(URLDepthPair link) {
+    private void CreateNewThread(URLDepthPair link)  {
+        /*
+        if(Thread.activeCount()>=Crawler.CountThreads) {
+            try {
+                if(Crawler.WaitingThreads == Thread.activeCount()) {
+                    System.err.println("Все потоки заняты");
+                    System.exit(0);
+                };
+                this.wait();
+            } catch (Exception e) {
+                return;
+            }
+        }
+
+         */
         CrawlerTask task = new CrawlerTask(link);
-        task.run();
+        task.start();
     }
 }
-*/
+
