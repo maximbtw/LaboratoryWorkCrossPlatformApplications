@@ -30,13 +30,16 @@ public class Crawler {
         System.out.print("Всего ссылок: " + visited.size());
     }
 
-    private void findLinks(URLDepthPair link){
+    private void findLinks(URLDepthPair link)
+    {
         try {
             URL url = new URL(link.getURL());
+
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
             Scanner scanner = new Scanner(connection.getInputStream());
+
 
             while (scanner.findWithinHorizon("<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1", 0) != null) {
                 String newURL = scanner.match().group(2);
