@@ -1,9 +1,7 @@
 package Lab7;
 
-import java.io.*;
 import java.net.*;
 import java.util.*;
-import java.util.regex.*;
 
 public class Crawler {
 
@@ -29,7 +27,7 @@ public class Crawler {
         }
 
         System.out.println();
-        System.out.printf("Всего ссылок: " + visited.size());
+        System.out.print("Всего ссылок: " + visited.size());
     }
 
     private void findLinks(URLDepthPair link){
@@ -39,9 +37,8 @@ public class Crawler {
             connection.setRequestMethod("GET");
 
             Scanner scanner = new Scanner(connection.getInputStream());
-            System.out.println(scanner.next());
 
-            while (scanner.findWithinHorizon("<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1", 0) != null){
+            while (scanner.findWithinHorizon("<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1", 0) != null) {
                 String newURL = scanner.match().group(2);
                 createNewLink(newURL, link);
             }
@@ -56,7 +53,13 @@ public class Crawler {
             newURL = link.getURL() + newURL;
         }
         else if (!newURL.startsWith("http")) return;
+
         URLDepthPair newLink = new URLDepthPair(newURL, link.getDepth() + 1);
         notVisited.add(newLink);
+    }
+
+    public static void main(String[] args) {
+        Crawler crawler = new Crawler("http://www.cs.caltech.edu/courses/cs11",1);
+        crawler.run();
     }
 }
