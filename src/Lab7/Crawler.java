@@ -40,7 +40,6 @@ public class Crawler {
 
             Scanner scanner = new Scanner(connection.getInputStream());
 
-
             while (scanner.findWithinHorizon("<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1", 0) != null) {
                 String newURL = scanner.match().group(2);
                 createNewLink(newURL, link);
@@ -62,7 +61,7 @@ public class Crawler {
     }
 
     public static void main(String[] args) {
-        Crawler crawler = new Crawler("http://www.cs.caltech.edu/courses/cs11",1);
+        Crawler crawler = new Crawler("http://www.cs.caltech.edu/courses/cs11",2);
         crawler.run();
     }
 }

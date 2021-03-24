@@ -16,7 +16,7 @@ public class CrawlerTask extends Thread {
     public void run() {
         URLDepthPair link = pool.getLink();
         System.out.println(link.toString());
-        System.out.println(Thread.activeCount());
+        //System.out.println(Thread.activeCount());
         Crawler.CountURLs++;
         if(link.getDepth() == Crawler.getMaxDepth()) return;
 
@@ -55,9 +55,12 @@ public class CrawlerTask extends Thread {
     }
 
     private void CreateNewThread(URLDepthPair link)  {
-        /*
-        if(Thread.activeCount()>=Crawler.CountThreads) {
+        /* Через wait
+        boolean isWaiting = false;
+        if(Thread.activeCount() >= Crawler.CountThreads) {
             try {
+                Crawler.WaitingThreads++;
+                isWaiting = true;
                 if(Crawler.WaitingThreads == Thread.activeCount()) {
                     System.err.println("Все потоки заняты");
                     System.exit(0);
@@ -67,8 +70,15 @@ public class CrawlerTask extends Thread {
                 return;
             }
         }
+        if(isWaiting) Crawler.WaitingThreads--;
+        */
 
-         */
+        /*через отмену создания нового потока
+        if(Thread.activeCount() >= Crawler.CountThreads) {
+            return;
+        }
+        */
+
         CrawlerTask task = new CrawlerTask(link);
         task.start();
     }

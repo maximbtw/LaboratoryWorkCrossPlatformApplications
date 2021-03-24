@@ -24,7 +24,14 @@ public class Crawler {
     }
 
     public static void main(String[] args){
-        Crawler crawler = new Crawler("http://www.cs.caltech.edu/courses/cs11",5 ,10);
+        Crawler crawler = new Crawler("http://www.cs.caltech.edu/courses/cs11",2 ,10);
         crawler.run();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(()->printResult()));
+    }
+
+    private static void printResult(){
+        System.out.println();
+        System.out.println("Всего ссылок: " + CountURLs);
     }
 }
